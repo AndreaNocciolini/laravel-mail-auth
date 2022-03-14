@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <form @submit.prevent="">
+            <form @submit.prevent="sendForm">
 
                 <div class="form-group">
                     <label for="name">Nome</label>
@@ -40,6 +40,24 @@ export default {
             name: null,
             email: null,
             message: null,
+        }
+    },
+    methods: {
+        sendForm(){
+            axios.post('/api/contact', 
+                {
+                    'name': this.name,
+                    'email': this.email,
+                    'message': this.message,
+                }
+            )
+            .then((result)=>
+                console.log(result.data)
+                
+            )
+            .catch((error) =>
+                console.log(error)
+            )
         }
     }
 }
