@@ -29,8 +29,31 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 import App from './views/App';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+
+import VueRouter from 'vue-router';
+import Vue from 'vue';
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/contact',
+            name: 'contact',
+            component: Contact
+        },
+    ]
+})
 
 const app = new Vue({
     el: '#app',
     render: h => h(App),
+    router
 });
