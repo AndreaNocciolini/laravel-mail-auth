@@ -16,7 +16,6 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         $validator = Validator::make($data, [
             'name' => 'required',
             'email' => 'required|email',
@@ -33,7 +32,7 @@ class ContactController extends Controller
             $new_lead->fill($data);
             $new_lead->save();
 
-            Mail::to('admin@me.com')->send(new SendMail($new_lead));
+            Mail::to('info@me.com')->send(new SendMail($new_lead));
 
             return response()->json([
                 'success' => true,
